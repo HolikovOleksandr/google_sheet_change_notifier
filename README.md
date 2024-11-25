@@ -1,85 +1,72 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Project Setup and Run Documentation
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 1. **Preparation for Running the Project**
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Before running the project, make sure to follow the necessary setup steps.
 
-## Description
+### 1.1. Clone the Repository
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
+Clone the repository of your project:
 
 ```bash
-$ npm install
+git clone https://github.com/your-repository-url.git
+cd your-project-directory
 ```
 
-## Compile and run the project
+### 1.2. Set Up .env Files
 
-```bash
-# development
-$ npm run start
+The project should have two main .env files:
 
-# watch mode
-$ npm run start:dev
+- `.env` — common configuration for all environments.
+- `.env.development` — configuration for development environment.
+- `.env.production` — configuration for production environment.
 
-# production mode
-$ npm run start:prod
+Ensure these files are correctly set up before running the project.
+
+### 1.3. Install Dependencies
+
+Install the dependencies using Yarn or npm.
+
+```
+npm install
 ```
 
-## Run tests
+### 1.4. Set Up PostgreSQL Database
 
-```bash
-# unit tests
-$ npm run test
+1. Make sure you have access to a PostgreSQL database. If you're using Docker, this will be automatically set up via the docker-compose.yml file.
+2. If needed, create the database manually.
 
-# e2e tests
-$ npm run test:e2e
+When running the project in Docker, the PostgreSQL container will be automatically set up and the database will be created.
 
-# test coverage
-$ npm run test:cov
+## 2. Docker Setup
+
+The project uses Docker for containerization, which allows you to run all services (including your API, PostgreSQL, Redis, and others) in containers.
+
+### 2.1. Run the Project with Docker
+
+To run the project with Docker, execute the following command:
+
+```
+docker-compose up --build
 ```
 
-## Resources
+This will build and start all the necessary services:
 
-Check out a few resources that may come in handy when working with NestJS:
+- API — your NestJS application.
+- PostgreSQL — the database.
+- Redis — for caching.
+- PgAdmin — a web interface to manage the database.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Docker will automatically look for the docker-compose.yml and Dockerfile files and use the values from the .env files to configure the containers.
 
-## Support
+## 2.2. Access the Application
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Once the containers are running, you can access your application:
 
-## Stay in touch
+- API will be available on http://localhost:3001
+- PGAdmin will be available on http://localhost:5050
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Login credentials for PGAdmin:
 
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- Username: admin
+  Password: admin
