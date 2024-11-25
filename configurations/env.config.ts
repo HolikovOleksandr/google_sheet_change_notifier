@@ -7,4 +7,7 @@ export default () => ({
     pass: process.env.DB_PASS,
     user: process.env.DB_USER,
   },
+  google: {
+    creds_path: process.env.GOOGLE_CREDS_PATH,
+  },
 });
