@@ -4,13 +4,15 @@ import configuration from '../configurations/env.config';
 import { DatabaseConfig } from 'configurations/database.config';
 import { CachConfig } from 'configurations/cache.config';
 import { GoogleSheetsModule } from './google_sheets/google_sheets.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
     DatabaseConfig,
     CachConfig,
-    GoogleSheetsModule,  ],
+    GoogleSheetsModule,
+    MailModule,  ],
   controllers: [],
   providers: [],
 })

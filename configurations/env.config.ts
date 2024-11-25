@@ -10,4 +10,8 @@ export default () => ({
   google: {
     creds_path: process.env.GOOGLE_CREDS_PATH,
   },
+  mail: {
+    api_key: process.env.SENDGRID_API_KEY,
+    my: process.env.MY_EMAIL,
+  },
 });
