@@ -20,6 +20,7 @@ export class LoggingInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       tap(() => this.logger.log(`📢  Response... ${response.statusCode}`)),
+
       catchError((error) => {
         this.logger.error(`❌  Error... ${error.message}`);
         response.status(error.status || 500);

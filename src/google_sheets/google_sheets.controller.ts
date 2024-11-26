@@ -1,23 +1,14 @@
-import { Controller, Get, Query, Inject } from '@nestjs/common';
-import { GoogleSheetsService } from './google_sheets.service';
+import { Controller, Post, Body, Logger } from '@nestjs/common';
+import { GoogleSheetsGateway } from './google_sheets.gateway';
 
-@Controller('sheet')
+@Controller()
 export class GoogleSheetsController {
-  constructor(
-    @Inject(GoogleSheetsService)
-    private readonly googleSheetsService: GoogleSheetsService,
-  ) {}
+  constructor(private readonly googleSheetsGateway: GoogleSheetsGateway) {}
 
-  @Get()
-  async getRows(
-    @Query('sheetId') sheetId: string,
-    @Query('range') range: string,
-  ) {
-    if (!sheetId || !range) {
-      return { error: 'sheetId and range query parameters are required' };
-    }
-
-    const rows = await this.googleSheetsService.getRows(sheetId, range);
-    return { rows };
+  @Post('notify')
+  notifySheetUpdate(@Body() body: any) {
+    Logger.log('Received update:', body);
+    this.googleSheetsGateway.sendUpdate(body);
+    return { status: 'success' };
   }
 }

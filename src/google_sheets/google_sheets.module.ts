@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { GoogleSheetsService } from './google_sheets.service';
+import { GoogleSheetsGateway } from './google_sheets.gateway';
 import { GoogleSheetsController } from './google_sheets.controller';
+import { GoogleSheetsService } from './google_sheets.service';
 
 @Module({
-  providers: [GoogleSheetsService],
-  exports: [GoogleSheetsService],
   controllers: [GoogleSheetsController],
+  providers: [GoogleSheetsService, GoogleSheetsGateway],
 })
 export class GoogleSheetsModule {}

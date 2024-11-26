@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import configuration from '../configurations/env.config';
-import { DatabaseConfig } from 'configurations/database.config';
 import { CachConfig } from 'configurations/cache.config';
+import { DatabaseConfig } from 'configurations/database.config';
 import { GoogleSheetsModule } from './google_sheets/google_sheets.module';
 import { MailModule } from './mail/mail.module';
 
@@ -12,7 +12,8 @@ import { MailModule } from './mail/mail.module';
     DatabaseConfig,
     CachConfig,
     GoogleSheetsModule,
-    MailModule,  ],
+    MailModule,
+  ],
   controllers: [],
   providers: [],
 })
